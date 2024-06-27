@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+#datetime {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+main {
+    margin-top: 2rem;
+}
+
+#workout-plan {
+    margin: 2rem 0;
+}
+
+button {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#current-workout {
+    display: none;
+}
+
+#timer {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+#workout-summary {
+    display: none;
+    margin-top: 2rem;
+}
+
+#summary-list {
+    list-style: none;
+    padding: 0;
+}
+
+#summary-list li {
+    margin: 0.5rem 0;
+}
+
+#exercise-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem 0;
+}
+
+#exercise-description {
+    margin: 1rem 0;
+}
