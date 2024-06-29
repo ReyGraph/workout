@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
-const datetimeElement = document.getElementById("datetime");
-const startButton = document.getElementById("start-btn");
-const finishButton = document.getElementById("finish-btn");
-const currentWorkout = document.getElementById("current-workout");
-const exerciseName = document.getElementById("exercise-name");
-const exerciseImage = document.getElementById("exercise-image");
-const exerciseDescription = document.getElementById("exercise-description");
-const timerElement = document.getElementById("timer");
-const workoutSummary = document.getElementById("workout-summary");
-const summaryList = document.getElementById("summary-list");
+    const datetimeElement = document.getElementById("datetime");
+    const startButton = document.getElementById("start-btn");
+    const finishButton = document.getElementById("finish-btn");
+    const currentWorkout = document.getElementById("current-workout");
+    const exerciseName = document.getElementById("exercise-name");
+    const exerciseImage = document.getElementById("exercise-image");
+    const exerciseDescription = document.getElementById("exercise-description");
+    const timerElement = document.getElementById("timer");
+    const workoutSummary = document.getElementById("workout-summary");
+    const summaryList = document.getElementById("summary-list");
+    const musicToggle = document.getElementById("music-toggle");
+    const motivationalMessage = document.getElementById("motivational-message");
+    const restTimerElement = document.getElementById("rest-timer");
+    const customMusicInput = document.getElementById("custom-music");
 
     const workoutPlan = {
-
         Monday: {
             title: "Chest and Triceps",
             exercises: [
@@ -23,7 +26,6 @@ const summaryList = document.getElementById("summary-list");
                 { name: "Close-grip Push-ups", sets: 3, reps: "12-15", image: "https://newlife.com.cy/wp-content/uploads/2019/11/02591301-Close-Grip-Push-up_Upper-Arms_360.gif", description: "Close-grip push-ups focus on the triceps and the inner chest muscles." }
             ]
         },
-
         Tuesday: {
             title: "Back and Biceps",
             exercises: [
@@ -53,26 +55,44 @@ const summaryList = document.getElementById("summary-list");
                 { name: "Dumbbell Lateral Raises", sets: 3, reps: "12-15", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/lateralraise-1456955524.gif", description: "Lateral raises isolate the deltoid muscles, particularly the lateral head." },
                 { name: "Dumbbell Front Raises", sets: 3, reps: "12-15", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/frontraise-1456955633.gif?crop=1xw:1xh;center,top&resize=640:*", description: "Front raises target the front deltoids and can be performed with dumbbells or a barbell." },
                 { name: "Wrist Curls", sets: 3, reps: "15-20", image: "https://i.pinimg.com/originals/15/ac/77/15ac77a4a3da197a0336e9bff38491b2.gif", description: "Wrist curls strengthen the forearm muscles, specifically the flexors." },
-                { name: "Reverse Wrist Curls", sets: 3, reps: "15-20", image: "https://newlife.com.cy/wp-content/uploads/2019/11/14411301-Dumbbell-Over-Bench-One-Arm-Reverse-Wrist-Curl_Forearms_360.gif", description: "Reverse wrist curls target the extensor muscles of the forearm." },
-                { name: "Farmer's Walk", sets: 3, reps: "60 seconds", image: "https://fitnessprogramer.com/wp-content/uploads/2022/02/Farmers-walk_Cardio.gif", description: "Farmer's walk is a functional exercise that strengthens the grip and forearms." }
+                { name: "Reverse Wrist Curls", sets: 3, reps: "15-20", image: "https://newlife.com.cy/wp-content/uploads/2019/11/Reverse-Barbell-Curl_Forearm_360.gif", description: "Reverse wrist curls target the forearm extensors." },
+                { name: "Shrugs", sets: 3, reps: "12-15", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/dumbbellshrug-1457041579.gif", description: "Shrugs target the trapezius muscles and can be done with dumbbells or a barbell." }
             ]
         },
         Friday: {
-            title: "Full Body and Abs",
+            title: "Full Body",
             exercises: [
-                { name: "Burpees", sets: 3, reps: "12-15", image: "https://media0.giphy.com/media/l4pT6Obikzs5gxWSI/giphy.gif?cid=6c09b952e4qi6qthvj5t1yfvgt7vp7cd75c2gu1syngbl7fe&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g", description: "Burpees are a full body exercise that combines squats, push-ups, and jumps." },
-                { name: "Dumbbell Thrusters", sets: 3, reps: "12-15", image: "https://i.makeagif.com/media/11-25-2015/X3J0oj.gif", description: "Dumbbell thrusters are a compound exercise that targets multiple muscle groups, including legs, shoulders, and core." },
-                { name: "Mountain Climbers", sets: 3, reps: "20", image: "https://cdn.jefit.com/assets/img/exercises/gifs/484.gif", description: "Mountain climbers are a cardio and core exercise that mimic climbing motions." },
-                { name: "Bicycle Crunches", sets: 3, reps: "20", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/08/bicycle-1472058017.gif?resize=980:*", description: "Bicycle crunches target the rectus abdominis and obliques." },
-                { name: "Sit-ups", sets: 3, reps: "15", image: "https://i.makeagif.com/media/10-31-2015/5PWs-w.gif", description: "Sit-ups are a classic abdominal exercise that target the core muscles." },
-                { name: "Flutter Kicks", sets: 3, reps: "20", image: "https://cdn.jefit.com/assets/img/exercises/gifs/198.gif", description: "Flutter kicks strengthen the lower abs and hip flexors." }
+                { name: "Burpees", sets: 3, reps: "15", image: "https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/15-best-fat-burning-exercises-for-men-gif-wif-2016-burpee.gif?resize=480:*", description: "Burpees are a full-body exercise that increase cardiovascular endurance and strength." },
+                { name: "Dumbbell Deadlifts", sets: 3, reps: "12-15", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/dumbbelldeadlift-1457038268.gif", description: "Dumbbell deadlifts target the lower body and back muscles." },
+                { name: "Mountain Climbers", sets: 3, reps: "20", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/mountainclimber-1457040581.gif", description: "Mountain climbers are a full-body exercise that improve cardiovascular fitness and core strength." },
+                { name: "Dumbbell Clean and Press", sets: 3, reps: "12", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/cleanandpress-1457038083.gif?crop=1xw:1xh;center,top&resize=640:*", description: "The dumbbell clean and press is a compound exercise that targets multiple muscle groups." },
+                { name: "Jumping Jacks", sets: 3, reps: "30", image: "https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/15-best-fat-burning-exercises-for-men-gif-jw-2016-jumping-jack.gif?resize=480:*", description: "Jumping jacks are a full-body exercise that improve cardiovascular fitness." },
+                { name: "Bicycle Crunches", sets: 3, reps: "20", image: "https://hips.hearstapps.com/hmg-prod/images/workouts/2016/08/bicyclecrunch-1472058212.gif", description: "Bicycle crunches target the abdominal muscles and obliques." }
             ]
         },
         Saturday: {
-            title: "Rest or Light Activity",
+            title: "Active Recovery",
+            exercises: [
+                { name: "Walking", sets: 1, reps: "30 minutes", image: "https://i.gifer.com/VuKx.gif", description: "Walking is a low-impact exercise that promotes recovery and cardiovascular health." },
+                { name: "Stretching", sets: 1, reps: "15-20 minutes", image: "https://media.tenor.com/RACT2p6H1BoAAAAd/animated-stretching.gif", description: "Stretching improves flexibility and helps prevent injuries." },
+                { name: "Foam Rolling", sets: 1, reps: "15-20 minutes", image: "https://thumbs.gfycat.com/SpiffyAfraidAiredale-max-1mb.gif", description: "Foam rolling helps release muscle tightness and improve blood flow." },
+                { name: "Yoga", sets: 1, reps: "20-30 minutes", image: "https://thumbs.gfycat.com/ImmaculateDapperIndianglassfish-max-1mb.gif", description: "Yoga combines physical postures, breathing exercises, and meditation to improve overall health." }
+            ]
+        },
+        Sunday: {
+            title: "Rest Day",
             exercises: []
         }
     };
+
+    const audioElement = new Audio("path/to/sound.mp3");
+    const music = new Audio("path/to/phonk.mp3");
+    let currentExerciseIndex = 0;
+    let workoutStarted = false;
+    let timerInterval = null;
+    let startTime = null;
+    let dayOfWeek = new Date().toLocaleString('en-us', { weekday: 'long' });
+    let currentDayPlan = workoutPlan[dayOfWeek];
 
     function updateDateTime() {
         const now = new Date();
@@ -80,11 +100,6 @@ const summaryList = document.getElementById("summary-list");
     }
 
     setInterval(updateDateTime, 1000);
-
-    let currentExerciseIndex = 0;
-    let workoutStarted = false;
-    let timerInterval = null;
-    let startTime = null;
 
     startButton.addEventListener("click", function() {
         if (!workoutStarted) {
@@ -98,6 +113,24 @@ const summaryList = document.getElementById("summary-list");
         }
     });
 
+    musicToggle.addEventListener("click", function() {
+        if (music.paused) {
+            music.play();
+            musicToggle.textContent = "Pause Music";
+        } else {
+            music.pause();
+            musicToggle.textContent = "Play Music";
+        }
+    });
+
+    customMusicInput.addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            music.src = url;
+        }
+    });
+
     function startWorkout() {
         currentExerciseIndex = 0;
         workoutStarted = true;
@@ -107,31 +140,47 @@ const summaryList = document.getElementById("summary-list");
         workoutSummary.style.display = "none";
         summaryList.innerHTML = '';
         showExercise();
-        startTimer();
     }
 
     function finishExercise() {
         const endTime = new Date();
         const timeTaken = Math.floor((endTime - startTime) / 1000);
-        const exercise = workoutPlan.Monday.exercises[currentExerciseIndex];
+        const exercise = currentDayPlan.exercises[currentExerciseIndex];
         const summaryItem = document.createElement("li");
         summaryItem.textContent = `${exercise.name} - Time taken: ${formatTime(timeTaken)}`;
         summaryList.appendChild(summaryItem);
 
         currentExerciseIndex++;
-        if (currentExerciseIndex < workoutPlan.Monday.exercises.length) {
-            showExercise();
-            resetTimer();
+        if (currentExerciseIndex < currentDayPlan.exercises.length) {
+            startRestTimer();
         } else {
             workoutFinished();
         }
     }
 
     function showExercise() {
-        const exercise = workoutPlan.Monday.exercises[currentExerciseIndex];
+        const exercise = currentDayPlan.exercises[currentExerciseIndex];
         exerciseName.textContent = `${exercise.name} - ${exercise.sets} sets of ${exercise.reps} reps`;
         exerciseImage.src = exercise.image;
         exerciseDescription.textContent = exercise.description;
+        audioElement.play();
+        motivationalMessage.textContent = getMotivationalMessage();
+        restTimerElement.textContent = "";
+        startTimer();
+    }
+
+    function startRestTimer() {
+        let restTime = 30; // 30 seconds rest time
+        restTimerElement.style.display = "block";
+        restTimerElement.textContent = `${restTime} seconds rest`;
+        let restInterval = setInterval(() => {
+            restTime--;
+            restTimerElement.textContent = `${restTime} seconds rest`;
+            if (restTime === 0) {
+                clearInterval(restInterval);
+                showExercise();
+            }
+        }, 1000);
     }
 
     function startTimer() {
@@ -160,6 +209,22 @@ const summaryList = document.getElementById("summary-list");
         currentWorkout.style.display = "none";
         startButton.style.display = "block";
         workoutSummary.style.display = "block";
+        motivationalMessage.textContent = "Congratulations! You've completed today's workout.";
+        restTimerElement.textContent = "";
         alert("Workout completed!");
     }
+
+    function getMotivationalMessage() {
+        const messages = [
+            "You're doing great! Keep pushing forward!",
+            "Believe in yourself. You can do this!",
+            "Stay focused and determined. You've got this!",
+            "Every rep counts. Keep up the awesome work!",
+            "The pain you feel today will be the strength you feel tomorrow!"
+        ];
+        return messages[Math.floor(Math.random() * messages.length)];
+    }
+
+    // Initialize workout for the current day
+    document.getElementById("workout-title").textContent = currentDayPlan.title;
 });
