@@ -10,26 +10,35 @@
     <div class="container">
         <header>
             <h1>Welcome, Fitness Fanatic!</h1>
-            <div id="datetime"></div>
+            <p id="datetime"></p>
         </header>
         <main>
-            <h2>Workout Plan</h2>
-            <div id="workout-plan">
-                <!-- WSG SKID. -->
-            </div>
-            <button id="start-btn">Start Workout</button>
-            <div id="current-workout">
+            <section id="workout-plan">
+                <h2 id="workout-title"></h2>
+                <button id="start-btn">Start Workout</button>
+            </section>
+            <section id="current-workout" style="display: none;">
                 <h3 id="exercise-name"></h3>
                 <img id="exercise-image" src="" alt="Exercise Image">
                 <p id="exercise-description"></p>
-                <div id="timer">00:00</div>
-                <button id="finish-btn">Finished</button>
-            </div>
-            <div id="workout-summary">
+                <div id="timer-container">
+                    <p id="timer">00:00:00</p>
+                    <button id="finish-btn" style="display: none;">Finished</button>
+                </div>
+                <p id="rest-timer">00:00</p>
+                <p id="motivational-message"></p>
+            </section>
+            <section id="workout-summary" style="display: none;">
                 <h3>Workout Summary</h3>
                 <ul id="summary-list"></ul>
-            </div>
+            </section>
         </main>
+        <footer>
+            <button id="music-toggle">Play Music</button>
+            <input type="file" id="custom-music" accept="audio/*">
+            <audio id="music-player" controls style="display: none;"></audio>
+            <button id="reset-btn" style="display: none;">Reset</button>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>
